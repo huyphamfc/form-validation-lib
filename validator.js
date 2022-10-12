@@ -13,6 +13,14 @@ export default function (formElement) {
         if (value === '') return `Please enter your ${label}.`;
       };
     },
+
+    email(value) {
+      const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+      if (pattern.test(value)) return;
+
+      return 'Email is invalid.';
+    },
   };
 
   const handleValidationMethods = element => {
@@ -55,6 +63,8 @@ export default function (formElement) {
         if (rule === 'required') {
           return validationMethods.required(element.ariaLabel);
         }
+
+        return validationMethods[rule];
       });
 
     formRules[element.name] = rules;
