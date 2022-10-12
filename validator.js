@@ -21,6 +21,13 @@ export default function (formElement) {
 
       return 'Email is invalid.';
     },
+
+    minLength(label, minLength) {
+      return function (value) {
+        if (value.length < minLength)
+          return `Your ${label} must be at least ${minLength} characters.`;
+      };
+    },
   };
 
   const handleValidationMethods = element => {
@@ -62,6 +69,11 @@ export default function (formElement) {
       .map(rule => {
         if (rule === 'required') {
           return validationMethods.required(element.ariaLabel);
+        }
+
+        if (rule.includes(':')) {
+          rule = rule.split(':');
+          return validationMethods[rule[0]](element.ariaLabel, rule[1]);
         }
 
         return validationMethods[rule];
