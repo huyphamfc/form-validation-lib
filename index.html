@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container flex">
+      <form class="form flex" id="form-1">
+        <!-- Form: Heading -->
+        <div class="form__heading">
+          <h1 class="form__title">Form Validation</h1>
+          <p>&copy; huyphamfc</p>
+        </div>
+
+        <!-- Form: Name -->
+        <div class="form__group flex">
+          <label class="form__label" for="name">Name</label>
+          <input
+            class="form__input"
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Enter your name"
+          />
+          <span class="form__warning">Error</span>
+        </div>
+
+        <!-- Form: Email -->
+        <div class="form__group flex">
+          <label class="form__label" for="email">Email</label>
+          <input
+            class="form__input"
+            id="email"
+            name="email"
+            type="text"
+            placeholder="Enter your email"
+          />
+          <span class="form__warning">Error</span>
+        </div>
+
+        <!-- Form: Password -->
+        <div class="form__group flex">
+          <label class="form__label" for="password">Password</label>
+          <input
+            class="form__input"
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+          />
+          <span class="form__warning">Error</span>
+        </div>
+
+        <!-- Form: Password Confirmation -->
+        <div class="form__group flex">
+          <label class="form__label" for="password-confirmation"
+            >Password Confirmation</label
+          >
+          <input
+            class="form__input"
+            id="password-confirmation"
+            name="password-confirmation"
+            type="password"
+            placeholder="Confirm your password"
+          />
+          <span class="form__warning">Error</span>
+        </div>
+
+        <!-- Form: Radio -->
+        <div class="form__group flex">
+          <label class="form__label">Gender</label>
+
+          <!-- Gender: Male -->
+          <div class="form__radio flex">
+            <input id="male" name="gender" type="radio" />
+            <label for="male">Male</label>
+          </div>
+
+          <!-- Gender: Female -->
+          <div class="form__radio flex">
+            <input id="female" name="gender" type="radio" />
+            <label for="female">Female</label>
+          </div>
+
+          <!-- Gender: Other -->
+          <div class="form__radio flex">
+            <input id="other" name="gender" type="radio" />
+            <label for="other">Other</label>
+          </div>
+
+          <span class="form__warning">Error</span>
+        </div>
+
+        <!-- Form: Checkbox -->
+        <div class="form__group flex">
+          <label class="form__label">Languages</label>
+
+          <!-- Language: Vietnamese -->
+          <div class="form__checkbox flex">
+            <input id="vn" type="checkbox" />
+            <label for="vn">Vietnamese</label>
+          </div>
+
+          <!-- Language: English -->
+          <div class="form__checkbox flex">
+            <input id="en" type="checkbox" />
+            <label for="en">English</label>
+          </div>
+
+          <span class="form__warning">Error</span>
+        </div>
+
+        <!-- Form: Select -->
+        <div class="form__group flex">
+          <label class="form__label">Price</label>
+
+          <select class="form__input" name="price">
+            <option value="" selected>--Please choose an option--</option>
+            <option value="free">Free</option>
+            <option value="premium">Premium</option>
+          </select>
+
+          <span class="form__warning">Error</span>
+        </div>
+
+        <!-- Form: Submit -->
+        <button class="form__btn">Submit</button>
+      </form>
+    </div>
+
+    <script type="module" defer src="./script.js"></script>
+  </body>
+</html>
