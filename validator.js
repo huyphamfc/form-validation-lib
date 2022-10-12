@@ -22,6 +22,23 @@ export default function (formElement) {
       return 'Email is invalid.';
     },
 
+    confirmed(confirmationElementName, confirmationCode) {
+      const sampleElement = Array.from(
+        formElement.querySelectorAll(`[confirmation-code=${confirmationCode}]`)
+      ).find(element => element.name !== confirmationElementName);
+
+      if (sampleElement) {
+        return function (value) {
+          if (value !== sampleElement.value)
+            return `The ${confirmationCode} confirmation does not match.`;
+        };
+      }
+
+      return function () {
+        return undefined;
+      };
+    },
+
     minLength(label, minLength) {
       return function (value) {
         if (value.length < minLength)
@@ -73,6 +90,11 @@ export default function (formElement) {
 
         if (rule.includes(':')) {
           rule = rule.split(':');
+
+          if (rule[0] === 'confirmed') {
+            return validationMethods.confirmed(element.name, rule[1]);
+          }
+
           return validationMethods[rule[0]](element.ariaLabel, rule[1]);
         }
 
