@@ -6,7 +6,7 @@
  * https://github.com/huyphamfc
  */
 
-export default function (formElement) {
+export default function (formElement, validateAll) {
   const validationMethods = {
     required(label) {
       return function (value) {
@@ -23,9 +23,11 @@ export default function (formElement) {
     },
 
     confirmed(confirmationElementName, confirmationCode) {
+      // prettier-ignore
       const sampleElement = Array.from(
         formElement.querySelectorAll(`[confirmation-code=${confirmationCode}]`)
-      ).find(element => element.name !== confirmationElementName);
+      )
+      .find(element => element.name !== confirmationElementName);
 
       if (sampleElement) {
         return function (value) {
@@ -106,16 +108,13 @@ export default function (formElement) {
     element.addEventListener('blur', handleValidation);
   });
 
-  formElement.addEventListener('submit', e => {
-    e.preventDefault();
+  if (validateAll) {
+    let isError = false;
 
-    let isValid = true;
     validationElements.forEach(element => {
-      if (handleValidation({ target: element })) isValid = false;
+      if (handleValidation({ target: element })) isError = true;
     });
 
-    if (isValid) return formElement.submit();
-
-    return;
-  });
+    return isError;
+  }
 }
